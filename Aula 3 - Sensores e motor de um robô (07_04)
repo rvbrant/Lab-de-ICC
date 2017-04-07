@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+int main( )
+{
+
+//LER SENSORES
+    int S1, S2, S3, M1, M2;
+    char key;
+    printf("Leitura de sensor");
+    while(1){
+      if(kbhit()){
+      key = getch();
+
+//ANÁLISE DOS SENSORES
+//PS: CADA NÚMERO (1, 2, 3, 4, 5, 6, 7, 8) REPRESENTA UMA SITUAÇÃO
+      if (key == '1'){ //A = S1
+        S1 = 0;
+        S2 = 0;
+        S3 = 0;
+        }
+      if (key == '2'){
+        S1 = 0;
+        S2 = 1;
+        S3 = 0;
+        }
+
+      if (key == '3'){
+        S1 = 1;
+        S2 = 0;
+        S3 = 0;
+        }
+
+      if (key == '4'){
+        S1 = 0;
+        S2 = 0;
+        S3 = 1;
+        }
+
+      if (key == '5'){
+        S1 = 1;
+        S2 = 1;
+        S3 = 1;
+        }
+
+      if (key == '6'){
+        S1 = 1;
+        S2 = 1;
+        S3 = 0;
+        }
+
+      if (key == '7'){
+        S1 = 0;
+        S2 = 1;
+        S3 = 1;
+        }
+
+      if (key == '8'){
+        S1 = 1;
+        S2 = 0;
+        S3 = 1;
+        }
+
+//DIRIGIR MOTORES
+    if(S1 == 0 && S2 == 0 && S3 == 0){
+        M1 = 1, M2 = 1;
+        printf("\nM1 = %d, M2 = %d", M1, M2);
+        }
+
+    if(S1 == 0 && S2 == 1 && S3 ==0){
+        M1 = 0, M2 = 1;
+        printf("\nM1 = %d, M2 = %d", M1, M2);
+        }
+
+    if(S1 == 1 && S2 == 0 && S3 == 0){
+        M1 = 1, M2 = 0;
+        printf("\nM1 = %d, M2 = %d", M1, M2);
+        }
+
+    if(S1 == 0 && S2 == 0 && S3 == 1){
+        M1 = 0, M2 = 1;
+        printf("\nM1 = %d, M2 = %d", M1, M2);
+        }
+
+    if(S1 == 1 && S2 == 1 && S3 == 1){
+        M1 = 0, M2 = 1;
+        printf("\nM1 = %d, M2 = %d", M1, M2);
+        }
+    if(S1 == 1 && S2 == 1 && S3 == 0){
+        M1 = 1, M2 = 0;
+        printf("\nM1 = %d, M2 = %d", M1, M2);
+        }
+    if(S1 == 0 && S2 == 1 && S3 == 1){
+        M1 = 0, M2 = 1;
+        printf("\nM1 = %d, M2 = %d", M1, M2);
+        }
+    if(S1 == 1 && S2 == 0 && S3 == 1){
+        M1 = 1, M2 = 1;
+        printf("\nM1 = %d, M2 = %d", M1, M2);
+        }
+    }
+    }
+
+    return 0;
+    }

@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//usar struct
+//usar funções
+//usar vetores M1[4] = {1, 0, 1, 1} pois possui quatro possibilidades e M1[4]
+//e = S1 + 2*S2 + 4*S3 + 9*S4...
+//S1  e S2 são as entradas do sonar
+//imprimir M[e]
+//3 funcões
+
+struct Sensores{ //valores que aparecerão no printf
+    int S1;
+    int S2;
+};
+
+struct Motores{ //valores que aparecerão no printf
+    int M1;
+    int M2;
+};
+
+struct Sensores LeSensores(void); //a função LeSensores declarará uma variável do tipo Sensores
+
+struct Motores LigarMotores(int ss1, int ss2); //a função Motores receberá funçpões do tipo Motores
+
+int main()
+{
+
+        }
+
+}
+
+//- Criar um struct com distâncias
+//- Criar um struct que atribui valores aos motores
+
+
+

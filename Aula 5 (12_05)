@@ -1,37 +1,74 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//usar struct
-//usar funções
-//usar vetores M1[4] = {1, 0, 1, 1} pois possui quatro possibilidades e M1[4]
-//e = S1 + 2*S2 + 4*S3 + 9*S4...
-//S1  e S2 são as entradas do sonar
-//imprimir M[e]
-//3 funcões
-
-struct Sensores{ //valores que aparecerão no printf
+struct tipoSensores{ //Tipo de struct da inteligência artificial
     int S1;
     int S2;
 };
-
-struct Motores{ //valores que aparecerão no printf
+struct tipoSensores IA; //Inteligência artificial
+struct tipoMotores{ //Tipo de struct dos motores
     int M1;
     int M2;
 };
+struct tipoMotores MOTORS; //Valores que o motor recebe
 
-struct Sensores LeSensores(void); //a função LeSensores declarará uma variável do tipo Sensores
 
-struct Motores LigarMotores(int ss1, int ss2); //a função Motores receberá funçpões do tipo Motores
+void LerSensores(int distancia1, int distancia2){ //IA identifica as distâncias entre sensores e obstáculos
+    if(distancia1 < 50){
+        IA.S1 = 1;
+    }
+    else{
+        IA.S1 = 0;
+    }
 
-int main()
-{
+    if(distancia2 < 50){
+        IA.S2 = 1;
+    }
+    else{
+        IA.S2 = 0;
 
-        }
+    }
+
+       return 0;
+}
+
+void Motores(int sensor1, int sensor2){ //Motores recebem valores de acordo com a IA
+    if(sensor1 == 0 && sensor2 == 0){
+        MOTORS.M1 = 1;
+        MOTORS.M2 = 1;
+    }
+    if(sensor1 == 1 && sensor2 == 0){
+        MOTORS.M1 = 1;
+        MOTORS.M2 = 0;
+    }
+    if(sensor1 == 0 && sensor2 == 1){
+        MOTORS.M1 = 0;
+        MOTORS.M2 = 1;
+    }
+    if(sensor1 == 1 && sensor2 == 1){
+        MOTORS.M1 = 0;
+        MOTORS.M2 = 1;
+    }
+
+       return 0;
+}
+
+void LigarMotores(int motor1, int motor2){ //Função que liga os motores
+   printf("Valor do primeiro motor = %d\n", motor1);
+   printf("Valor do segundo motor = %d\n", motor2);
+
+   return 0;
 
 }
 
-//- Criar um struct com distâncias
-//- Criar um struct que atribui valores aos motores
-
-
-
+int main(){
+   int distancia1, distancia2;
+   printf("Digite os valores das distâncias: ");
+   scanf("%d %d", &distancia1, &distancia2);
+   LerSensores(distancia1, distancia2); //para rodar a função ela p
+   printf("Valores do sensor 1 = %d\n", IA.S1);
+   printf("Valores do sensor 2 = %d\n", IA.S2);
+   Motores(IA.S1, IA.S2);
+   LigarMotores(MOTORS.M1, MOTORS.M2);
+   return 0;
+    }

@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int S1, S2, S3, M1, M2;
+int distancia1, distancia2, distancia3;
+
+LeSensores(int distancia1, int distancia2, int distancia3){
+    if(distancia1<50){
+        S1 = 1;
+    }
+    else{
+        S1 = 0;
+    }
+    if(distancia2<50){
+        S2 = 1;
+    }
+    else{
+        S2 = 0;
+    }
+
+    if(distancia3<50){
+        S3 = 1;
+    }
+    else{
+        S3 = 0;
+    }
+    return 0;
+}
+
+IA(){
+    if (S1 == 0 && S2 == 0 && S3 == 0){
+        M1 = 1;
+        M2 = 1;
+    }
+
+    if (S1 == 0 && S2 == 1 && S3 == 0){
+        M1 = 0;
+        M2 = 1;
+    }
+
+    if (S1 == 1 && S2 == 0 && S3 == 0){
+        M1 = 1;
+        M2 = 0;
+    }
+
+    if (S1 == 0 && S2 == 0 && S3 == 1){
+        M1 = 0;
+        M2 = 1;
+    }
+
+    if (S1 == 1 && S2 == 1 && S3 == 1){
+        M1 = 0;
+        M2 = 1;
+    }
+
+    if (S1 == 1 && S2 == 1 && S3 == 0){
+        M1 = 1;
+        M2 = 0;
+    }
+
+    if (S1 == 0 && S2 == 1 && S3 == 1){
+        M1 = 0;
+        M2 = 1;
+    }
+
+    if (S1 == 1 && S2 == 0 && S3 == 1){
+        M1 = 1;
+        M2 = 1;
+    }
+    printf("M1 = %d\5n", M1);
+    printf("M2 = %d", M2);
+    return 0;
+}
+
+int main (void){
+    printf("Digita os valores das distâncias = ");
+    scanf("%d %d %d", &distancia1, &distancia2, &distancia3);
+    LeSensores(distancia1, distancia2, distancia3);
+    IA(S1, S2, S3);
+
+    return 0;
+}

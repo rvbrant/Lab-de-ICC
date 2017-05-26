@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void Inicio Populacao();
+void Avalicao Populacao();
+void Selecao Natural();
+void Crossover();
+void Mutacao ();
+void Nova Populacao();
+
+void Inicio Populacao(){
+    int Individuos[10]; //vetor que contém os indivíduos
+}
+
+void Avalicao Populacao(){
+}
+
+void Selecao Natural(){
+}
+
+void Crossover(){
+}
+
+void Mutacao (){
+}
+
+void Nova Populacao{
+}
+
+int main()
+{
+    printf("Hello world!\n");
+    return 0;
+}

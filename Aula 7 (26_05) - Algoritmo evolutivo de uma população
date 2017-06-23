@@ -1,15 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
+/*
 void Inicio Populacao();
 void Avalicao Populacao();
 void Selecao Natural();
 void Crossover();
 void Mutacao ();
 void Nova Populacao();
+int Individuos[10]
 
 void Inicio Populacao(){
-    int Individuos[10]; //vetor que contém os indivíduos
+; //vetor que contém os indivíduos
+    for(i=0; i<10; i++){
+        vetor[i]=rand();
+        printf("%d", vetor[i]);
+    }
 }
 
 void Avalicao Populacao(){
@@ -27,8 +34,16 @@ void Mutacao (){
 void Nova Populacao{
 }
 
+*/
+
 int main()
 {
-    printf("Hello world!\n");
+    int vetor[10];
+    int i;
+    printf("intervalo da rand: [0,%d]\n", RAND_MAX);
+    for(i=0; i<10; i++){
+        vetor[i]=rand();
+        printf("%d", vetor[i]);
+    }
     return 0;
 }

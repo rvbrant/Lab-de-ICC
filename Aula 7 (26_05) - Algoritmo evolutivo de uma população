@@ -23,22 +23,30 @@ void Avalicao Populacao(){
 }
 
 void Selecao Natural(){
+    //acha o valor máximo - usar função de ordenar vetor
+    //indica quem irá reproduzir
 }
 
 void Crossover(){
+    //soma os dois melhores
+    //armazena um valor
+    //retorna esse valor
 }
 
 void Mutacao (){
+    //adiciona 0,01 ao valor obtido no crossover
 }
 
 void Nova Populacao{
+    //substitui o último valor
+    //printa algo indicando que o último foi morto
 }
 
 */
 
 int main()
 {
-    int vetor[10];
+    float vetor[10]; //vetor precisa ser float pois, devido a função mutação alguns terão algarismos com vírgula
     int i;
     printf("intervalo da rand: [0,%d]\n", RAND_MAX);
     for(i=0; i<10; i++){

@@ -65,7 +65,7 @@ void Crossover(float Individuos[]){
     if(Descendente<=9.98){
         Descendente = Descendente + 0.02;
     }
-    printf("\nO descendente gerado eh = %f", Descendente);
+    printf("\nO descendente gerado eh = %f\n", Descendente);
     Nova_Populacao(Individuos, Descendente);
 }
 
@@ -73,12 +73,21 @@ void Crossover(float Individuos[]){
 void Nova_Populacao(float Individuos[], double Descendente){
     //substitui o último valor
     //printa algo indicando que o último foi morto
-    if(Individuos[1]=10){
-        printf("Final");
+    int i;
+    if(Individuos[0]>=9.8){
+        printf("\n");
+        for(i=0;i<50;i++){
+            printf("*");
+        }
+        printf("\nA populacao chegou ao apice de sua evolucao!\n");
+        for(i=0;i<50;i++){
+            printf("*");
+        }
     }
     else{
     Individuos[0]=Descendente;
-    printf("\nO individuo mais fraco foi morto e substituido por = %f", Individuos[0]);
+    printf("\nSobrevivencia do mais apto: o individuo mais fraco da populacao foi morto e substituido pelo descendente gerado\n", Individuos[0]);
+    printf("\nA selecao natural reinicia seu ciclo\n");
     Selecao_Natural(Individuos, 0, 1);
     }
 }

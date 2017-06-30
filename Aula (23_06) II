@@ -1,0 +1,357 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int jogador = 1;
+int *ponteiro = &jogador;
+
+
+int Numeros(char TabelaJogo[3][3]){ //aqui dá os parabéns
+
+//gera os números aleatórios
+
+
+	int n1, n2;
+    if(ChecarTabela(TabelaJogo)!=0){ //diferente de 0 significa que alguém ganhou
+
+
+        if(ChecarTabela(TabelaJogo) == 1){
+            printf("\nParabens, Jogador 1! Voce venceu!\n");
+			return 0;
+
+            
+        }
+        if(ChecarTabela(TabelaJogo) == 2){
+            printf("\nParabens, Jogador 2! Voce venceu!\n");
+ 			return 0;
+        }
+        
+     
+	}
+
+    else{
+
+        if(jogador==3){
+            *ponteiro = 1;
+            Numeros(TabelaJogo);
+        }
+        else{
+            if(jogador == 1){
+                printf("\nVez do Jogador 1\n");
+                n1 = (rand() % 10);
+                n2 = (rand() % 10);
+                Perguntas(n1, n2, TabelaJogo);
+            }
+            if(jogador == 2){
+                printf("\nVez do Jogador 2\n");
+                n1 = (rand() % 10);
+                n2 = (rand() % 10);
+                Perguntas(n1, n2, TabelaJogo);
+            }
+        }
+
+    }
+
+}
+
+
+int ChecarTabela(char TabelaJogo[3][3]){ //ver se o jogo acabou ou não, 0 não acabou, 1  e 2 e acabaram
+    
+    //precisa considerar as possibilidades de vitória
+	
+	int i, j;
+    int m = 0, n = 0;
+
+//testa na horizontal
+
+    for(i=0; i<3; i++){
+        for(j=0;j<3;j++){
+            if(TabelaJogo[i][j]=='X'){ //0 0 e 0 1 e 0 2
+                m++;
+            }
+            
+            
+            
+            if(TabelaJogo[i][j]=='O'){
+                n++;
+            }
+            
+			    if(m==3){
+			        return 1;
+			    }
+			    if(n==3){
+			        return 2;
+			    }
+
+
+        }
+        
+        m = 0, n = 0;
+
+    }
+    
+//teste na vertical
+
+    for(i=0; i<3; i++){
+        for(j=0;j<3;j++){
+            if(TabelaJogo[j][i]=='X'){ //0 0 e 1 0 e 2 0
+                m++;
+            }
+            
+            
+            
+            if(TabelaJogo[j][i]=='O'){
+                n++;
+            }
+            
+			    if(m==3){
+			        return 1;
+			    }
+			    if(n==3){
+			        return 2;
+			    }
+
+
+        }
+        
+        m = 0, n = 0;
+
+    }
+    
+//teste na diagonal da esquerda pra direita
+
+    for(i=0; i<3; i++){
+    	
+            if(TabelaJogo[i][i]=='X'){ //0 0 e 11 e 22
+                m++;
+            }
+            
+            
+            
+            if(TabelaJogo[i][i]=='O'){
+                n++;
+            }
+            
+			    if(m==3){
+			        return 1;
+			    }
+			    if(n==3){
+			        return 2;
+			    }
+
+
+        
+        
+
+
+    }
+    m = 0, n = 0;
+    
+//teste na diagonal da direita pra esquerda
+
+	i=0, j=2;
+            if(TabelaJogo[i][j]=='X'){ //0 2 e 1 1 e 2 0
+                if(TabelaJogo[j][i]=='X'){
+	            	if(TabelaJogo[i+1][i+1]=='X'){
+	                	m=1;
+						return 1;
+            		}
+       		 	}
+       		}
+
+            if(TabelaJogo[i][j]=='O'){ //0 2 e 1 1 e 2 0
+                if(TabelaJogo[j][i]=='O'){
+	            	if(TabelaJogo[i+1][i+1]=='O'){
+	                	n=1;
+						return 2;
+            		}
+        		}
+        	}
+
+	
+	//ninguém ganhou
+    		
+	if(m==0 && n ==0){					
+		return 0;
+	}
+
+}
+
+int PosicaoValida(char TabelaJogo[3][3], int Linha, int Coluna){ 
+	//recebe linha e coluna
+	//checa se a posição escolhida pelo usuário é valida
+	if(TabelaJogo[Linha][Coluna] == 'X' || TabelaJogo[Linha][Coluna]== 'O'){
+		return 0;
+	}
+	
+	else{
+		return 1;
+	}
+	
+
+}
+
+void Perguntas(int n1, int n2, char TabelaJogo[3][3]){
+	//faz uma pergunta os com valores aleatórios
+	//pergunta é de acordo com outra função random
+	int k = (rand() % 3);
+	int resposta, r;
+
+	if(k==0){
+		resposta = n1+n2;
+		printf("\n\nQuanto vale %d + %d = ?", n1, n2);
+		scanf("%d", &r);
+		if(r == resposta){
+			printf("Acertou!\n");
+			Acerto(TabelaJogo);
+		}
+		else{
+			printf("Errou!\n");
+			*ponteiro = jogador + 1; //altera o valor do jogador
+			Numeros(TabelaJogo);
+		}
+	}
+
+	if(k==1){
+		resposta = n1-n2;
+		printf("\n\nQuanto vale %d - %d = ?", n1, n2);
+		scanf("%d", &r);
+		if(r == resposta){
+			printf("Acertou!\n");
+			Acerto(TabelaJogo);
+		}
+		else{
+			printf("Errou!\n");
+			*ponteiro = jogador + 1;
+			Numeros(TabelaJogo);
+		}
+	}
+
+	if(k==2){
+		resposta = n1*n2;
+		printf("\n\nQuanto vale %d x %d = ?", n1, n2);
+		scanf("%d", &r);
+		if(r == resposta){
+			printf("Acertou!\n");
+			Acerto(TabelaJogo);
+		}
+		else{
+			printf("Errou!\n");
+			*ponteiro = jogador + 1;
+			Numeros(TabelaJogo);
+		}
+	}
+}
+
+void Acerto(char TabelaJogo[3][3]){
+	//permite colocar um X ou um O em uma matriz
+	int Linha, Coluna;
+		
+	printf("\nEscolha uma linha (0 = Linha 1; 1 = Linha 2; 2 = Linha 3): ");
+	scanf("%d", &Linha);
+	Linha = Linha - 1;
+	
+	if(Linha>2){
+		printf("\nLinha inexistente! Digite a posicao novamente");
+		Acerto(TabelaJogo);
+	}
+	
+	
+	printf("\nEscolha uma coluna (0 = Coluna 1; 1 = Coluna 2; 2 = Coluna 3): ");
+	scanf("%d", &Coluna);
+	Coluna = Coluna - 1;
+
+	if(Coluna>2){
+		printf("\nColuna inexistente! Digite a posicao novamente");
+		Acerto(TabelaJogo);
+	}
+	
+
+	if(jogador==1){
+		if(PosicaoValida(TabelaJogo, Linha, Coluna)==1){
+			TabelaJogo[Linha][Coluna] = 'X';
+			*ponteiro = jogador + 1; //muda o jogador depois do acerto
+			MostrarJogo(TabelaJogo);
+		}
+		else{
+			if(ChecarTabela(TabelaJogo)==0){
+				printf("\nPosicao ocupada! Escolha outra posicao\n");
+				Acerto(TabelaJogo);
+			}
+		}
+	}
+
+	if(jogador==2){
+		if(PosicaoValida(TabelaJogo, Linha, Coluna)==1){
+			TabelaJogo[Linha][Coluna] = 'O';
+			*ponteiro = jogador + 1;
+			MostrarJogo(TabelaJogo);
+		}
+		else{
+			if(ChecarTabela(TabelaJogo)==0){
+				printf("\nPosicao ocupada! Escolha outra posicao\n");
+				Acerto(TabelaJogo);
+			}
+		}
+	}
+
+
+}
+
+
+
+void MostrarJogo(char TabelaJogo[3][3]){
+
+//mostra situacao atual do jogo
+	int i, j;
+
+	printf("\n\n");
+	for(i=0; i<20; i++){
+		printf("*");
+	}
+	printf("\nJOGO DA VELHA:\n");
+	for(i=0; i<20; i++){
+		printf("*");
+	}
+	printf("\n");
+	for(i=0; i<3; i++){
+		for(j=0; j<3; j++){
+			printf("%c ", TabelaJogo[i][j]);
+		}
+		printf("\n\n");
+	}
+
+//volta às perguntas
+	Numeros(TabelaJogo);
+
+}
+
+
+
+int main(){
+	srand(time(NULL));
+	char TabelaJogo[3][3];
+	int i, j;
+	printf("\n");
+	for(i=0; i<25; i++){
+		printf("*");
+	}
+
+	printf("\n\nJOGO DA VELHA EDUCATIVO:\n\n");
+
+	for(i=0; i<3; i++){
+	    for(j=0; j<3; j++){
+            TabelaJogo[i][j]='_';
+	    }
+	}
+
+	for(i=0; i<25; i++){
+		printf("*");
+	}
+
+	printf("\nComo jogar: \n-O programa perguntara o resultado de uma operacao matematica entre dois numeros; \n-O jogador tem 10s para dizer a resposta; \n-Caso o jogador acerte, tem direito a uma jogada no jogo da velha;");
+
+	printf("\n\nInicio do jogo:\n\n");
+	Numeros(TabelaJogo);
+	return 0;
+}

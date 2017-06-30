@@ -45,29 +45,123 @@ void Numeros(char TabelaJogo[3][3], int jogador){
 }
 
 int ChecarTabela(char TabelaJogo[3][3], int jogador){
-    int i, j;
+    
+    //precisa considerar as possibilidades de vitória
+	
+	int i, j;
     int m = 0, n = 0;
+
+//testa na horizontal
+
     for(i=0; i<3; i++){
         for(j=0;j<3;j++){
-            if(TabelaJogo[i][j]=='X'){
+            if(TabelaJogo[i][j]=='X'){ //0 0 e 0 1 e 0 2
                 m++;
             }
+            
+            
+            
             if(TabelaJogo[i][j]=='O'){
                 n++;
             }
+            
+			    if(m==3){
+			        return 1;
+			    }
+			    if(n==3){
+			        return 2;
+			    }
+
 
         }
+        
+        m = 0, n = 0;
 
     }
-    if(m==3){
-        return 1;
+    
+//teste na vertical
+
+    for(i=0; i<3; i++){
+        for(j=0;j<3;j++){
+            if(TabelaJogo[j][i]=='X'){ //0 0 e 1 0 e 2 0
+                m++;
+            }
+            
+            
+            
+            if(TabelaJogo[j][i]=='O'){
+                n++;
+            }
+            
+			    if(m==3){
+			        return 1;
+			    }
+			    if(n==3){
+			        return 2;
+			    }
+
+
+        }
+        
+        m = 0, n = 0;
+
     }
-    if(n==3){
-        return 2;
+    
+//teste na diagonal da esquerda pra direita
+
+    for(i=0; i<3; i++){
+    	
+            if(TabelaJogo[i][i]=='X'){ //0 0 e 11 e 22
+                m++;
+            }
+            
+            
+            
+            if(TabelaJogo[i][i]=='O'){
+                n++;
+            }
+            
+			    if(m==3){
+			        return 1;
+			    }
+			    if(n==3){
+			        return 2;
+			    }
+
+
+        
+        
+
+
     }
-    else{
-        return 0;
-    }
+    m = 0, n = 0;
+    
+//teste na diagonal da direita pra esquerda
+
+	i=0, j=2;
+            if(TabelaJogo[i][j]=='X'){ //0 2 e 1 1 e 2 0
+                if(TabelaJogo[j][i]=='X'){
+	            	if(TabelaJogo[i+1][i+1]=='X'){
+	                	return 1;
+            		}
+       		 	}
+       		}
+
+            if(TabelaJogo[i][j]=='O'){ //0 2 e 1 1 e 2 0
+                if(TabelaJogo[j][i]=='O'){
+	            	if(TabelaJogo[i+1][i+1]=='O'){
+	                	return 2;
+            		}
+        		}
+        	}
+
+	
+	//ninguém ganhou
+    		
+	if(m==0 && n ==0){					
+		return 0;
+	}
+
 }
 
 void Perguntas(int n1, int n2, char TabelaJogo[3][3], int jogador){

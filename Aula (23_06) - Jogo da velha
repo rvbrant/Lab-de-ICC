@@ -164,6 +164,20 @@ int ChecarTabela(char TabelaJogo[3][3], int jogador){
 
 }
 
+int PosicaoValida(char TabelaJogo[3][3], int Linha, int Coluna){ 
+	//recebe linha e coluna
+	//checa se a posição escolhida pelo usuário é valida
+	if(TabelaJogo[Linha][Coluna] == 'X' || TabelaJogo[Linha][Coluna]== 'O'){
+		return 0;
+	}
+	
+	else{
+		return 1;
+	}
+	
+
+}
+
 void Perguntas(int n1, int n2, char TabelaJogo[3][3], int jogador){
 	//faz uma pergunta os com valores aleatórios
 	//pergunta é de acordo com outra função random
@@ -219,21 +233,49 @@ void Perguntas(int n1, int n2, char TabelaJogo[3][3], int jogador){
 void Acerto(char TabelaJogo[3][3], int jogador){
 	//permite colocar um X ou um O em uma matriz
 	int Linha, Coluna;
-	printf("\nEscolha uma linha: ");
+		
+	printf("\nEscolha uma linha (0 = Linha 1; 1 = Linha 2; 2 = Linha 3): ");
 	scanf("%d", &Linha);
-	printf("\nEscolha uma coluna: ");
+	
+	if(Linha>2){
+		printf("\nLinha inexistente! Digite a posicao novamente");
+		Acerto(TabelaJogo, jogador);
+	}
+	
+	
+	printf("\nEscolha uma coluna (0 = Coluna 1; 1 = Coluna 2; 2 = Coluna 3): ");
 	scanf("%d", &Coluna);
 
+	if(Coluna>2){
+		printf("\nColuna inexistente! Digite a posicao novamente");
+		Acerto(TabelaJogo, jogador);
+	}
+	
+
 	if(jogador==1){
-		TabelaJogo[Linha][Coluna] = 'X';
+		if(PosicaoValida(TabelaJogo, Linha, Coluna)==1){
+			TabelaJogo[Linha][Coluna] = 'X';
+			MostrarJogo(TabelaJogo);
+		}
+		else{
+			printf("\nPosicao ocupada! Escolha outra posicao\n");
+			Acerto(TabelaJogo, jogador);
+		}
 	}
 
 	if(jogador==2){
-		TabelaJogo[Linha][Coluna] = 'O';
+		if(PosicaoValida(TabelaJogo, Linha, Coluna)==1){
+			TabelaJogo[Linha][Coluna] = 'O';
+			MostrarJogo(TabelaJogo);
+		}
+		else{
+		
+			printf("\nPosicao ocupada! Escolha outra posicao\n");
+			Acerto(TabelaJogo, jogador);
+		}
 	}
 
 
-	MostrarJogo(TabelaJogo);
 }
 
 

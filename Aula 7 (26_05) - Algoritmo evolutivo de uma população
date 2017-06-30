@@ -56,21 +56,34 @@ void Selecao_Natural(float Individuos[], int i, int j){
 
 
 void Crossover(float Individuos[]){
-    //soma os dois melhores
+    
+	//soma os dois melhores
     //armazena um valor
     //retorna esse valor
+    //precisa reproduzir com todos
+    //for vai fazer com que o melhor reproduza-se com todos
+    //armazena esses descendentes no vetor populacao já
+    //
+    
     printf("\nCrossover com os melhores individuos:\n ");
     float Descendente;
-    Descendente = (Individuos[9] + Individuos[8])/2;
-    if(Descendente<=9.98){
-        Descendente = Descendente + 0.02;
-    }
-    printf("\nO descendente gerado eh = %f\n", Descendente);
-    Nova_Populacao(Individuos, Descendente);
+    int i;
+    
+   
+    
+	for(i=8; i>0; i--);{
+		Descendente = (Individuos[9] + Individuos[i])/2;
+
+	        Individuos[i] = Descendente + 0.02;
+	        printf("\n\nOs descendentes foram gerados\n\n");
+
+	    
+	}
+    Nova_Populacao(Individuos);
 }
 
 
-void Nova_Populacao(float Individuos[], double Descendente){
+void Nova_Populacao(float Individuos[]){
     //substitui o último valor
     //printa algo indicando que o último foi morto
     int i;
@@ -85,8 +98,6 @@ void Nova_Populacao(float Individuos[], double Descendente){
         }
     }
     else{
-    Individuos[0]=Descendente;
-    printf("\nSobrevivencia do mais apto: o individuo mais fraco da populacao foi morto e substituido pelo descendente gerado\n", Individuos[0]);
     printf("\nA selecao natural reinicia seu ciclo\n");
     Selecao_Natural(Individuos, 0, 1);
     }
